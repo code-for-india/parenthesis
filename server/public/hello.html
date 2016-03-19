@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>Hello</title>
+        <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    </head>
+    <body>
+        <h1>Demo Form!</h1>
+        
+        <form id="uploadForm"
+             enctype   =  "multipart/form-data"
+             action    =  "api/v2/photo"
+             method    =  "post"
+        >
+        <input type="file" name="userPhoto" />
+        <input type="submit" value="Upload Image" name="submit">
+        </form>
+        <img src="http://cfi-nivesh2.c9users.io/uploads/userPhoto-1458367216090">
+    </body>
+</html>
