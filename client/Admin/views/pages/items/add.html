@@ -1,0 +1,63 @@
+
+  <div class="row" ng-controller="ItemCtrl">
+    <div class="col-sm-6 col-sm-offset-3">
+      <form name="form" ng-submit="add(item)" class="form-horizontal form-validation">
+        <div class="panel panel-default">
+          <div class="panel-heading bg-white">
+            <span class="font-bold">Add Item</span>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Item Id</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" ng-model="item.itemId" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" required >
+              </div> 
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Type</label>
+              <div class="col-sm-9">
+                <select class="form-control m-t" ng-model="item.type" required >
+                    <option value="">Please choose</option>
+                    <option value="Public Loos">Public Loos</option>
+                    <option value="Public Hospitals">Public Hospitals</option>
+                    <option value="Public Monuments">Public Monuments</option>
+                </select>
+              </div> 
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Area/Locality</label>
+              <div class="col-sm-9">
+                <textarea class="form-control" ng-model="item.area" rows="4" required></textarea>
+              </div>               
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">City</label>
+              <div class="col-sm-9">
+                <select class="form-control m-t" ng-model="item.city" required >
+                    <option value="">Please choose</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Noida">Noida</option>
+                    <option value="Gurgaon">Gurgaon</option>
+                    <option value="Faridabad">Faridabad</option>                    
+                    <option value="Gazhiabad">Gazhiabad</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">State</label>
+              <div class="col-sm-9">
+                <select class="form-control m-t" ng-model="item.state" required >
+                    <option value="">Please choose</option>
+                    <option value="Delhi/NCR">Delhi/NCR</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <footer class="panel-footer text-right">
+            <button type="submit" class="btn btn-info" ng-disabled="form.$invalid">Add</button>
+          </footer>
+        </div>
+      </form>
+    </div>
+  </div>
+ 

@@ -1,0 +1,70 @@
+  <div class="row">
+    <div class="col-lg-8 col-md-7 col-sm-7">
+      <div class="row no-gutter">
+        <div class="col-xs-12">
+          <div class="card">
+            <div class="card-heading">
+              <h2>Dashboard</h2>
+              <small>Welcome to the new FeedBack System dashboard</small>
+            </div>            
+            <div class="card-body">
+              <div class="row" ng-controller="ChartCtrl">
+                <div class="col-sm-6">
+                  <div class="text-center">
+                    Feedback Overview<br><p class="text-muted-dk">Green: Positive, Red: Negative</p>
+                  </div>
+                  <div class="p-md">
+                    <div class="b-t b-light p" ng-repeat="rating in ratings | filter:searchText track by $index ">
+                      {{rating.city}}
+                      <div class="progress progress-striped progress-sm r m-v-sm">
+                        <div class="progress-bar bg-success" style="width:{{rating.positive}}%">{{rating.positive}}%</div>
+                        <div class="progress-bar bg-danger" style="width:{{rating.negative}}%">{{rating.negative}}%</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="text-center">
+                    Feedback Count
+                  </div>
+                  <div class="p-md">
+                    <!--<div ui-jp="plot" ui-options="
+                      {{plot_pie}},
+                      {
+                        series: { pie: { show: true, innerRadius: 0.55, stroke: { width: 3 }, label: { show: true, threshold: 0.05 } } },
+                        colors: ['{{app.color.primary}}','{{app.color.success}}'],
+                        grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },   
+                        tooltip: true,
+                        tooltipOpts: { content: '%s: %p.0%' }
+                      }
+                    " style="height:160px"></div>-->
+                  <canvas id="polar-area" class="chart chart-pie"
+                      chart-data="pieData" chart-labels="pieLabel">
+                    </canvas> 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-5 col-sm-5">
+      <div class="card">
+        <div class="card-heading">
+          <h2>Feedback Activities</h2>
+          <small>Updated 1 minutes</small>
+        </div>
+        <div class="card-body">
+          <div class="streamline b-l b-accent m-b" ng-repeat="item in itemFeedback | orderBy: '-feedback.created' | filter:searchText track by $index">
+            <div class="sl-item b-primary b-l" >
+              <div class="sl-content">
+                <div class="text-muted-dk"><span am-time-ago="item.feedback.created"></span></div>
+                <p><b>{{item.area}}, {{item.city}}:</b> "{{item.feedback.remarks}}" - <a href class="text-info">{{item.feedback.name}}</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

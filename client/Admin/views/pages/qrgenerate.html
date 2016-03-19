@@ -1,0 +1,28 @@
+
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <div class="panel panel-default">
+        <div class="panel-heading font-bold">QR Code</div>
+        <div class="panel-body pdf">
+              <div class="row">
+                <div class="col-sm-12" >
+                  <img src="images/upper.png" class="img-responsive">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3 col-sm-offset-3">
+                  <qrcode version="4" error-correction-level="M" size="274" data="{{qrUrl}}" href="{{qrUrl}}"></qrcode>
+                </div>
+              </div>   
+              <div class="row">
+                <div class="col-sm-12">
+                  <img src="images/lower.png" class="img-responsive">
+                </div>
+              </div>
+        </div>
+        <div class="b-t b-light p">
+          <button class="btn btn-info" ng-click="getPDF('.pdf')"><i class="fa fa-print"></i> Export</button>
+        </div>
+      </div>
+    </div>
+  </div>

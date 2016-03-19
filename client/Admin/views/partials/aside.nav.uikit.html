@@ -1,0 +1,59 @@
+<nav ui-nav>
+  <ul class="nav">
+    <li ui-sref-active="active">
+      <a md-ink-ripple ui-sref="app.dashboard">      
+        <i class="icon mdi-action-settings-input-svideo i-20"></i>
+        <span class="font-normal">Dashboard</span>
+      </a>
+    </li>
+    <li ng-class="{active:$state.includes('app.item')}">
+      <a md-ink-ripple>
+        <span class="pull-right text-muted">
+          <i class="fa fa-caret-down"></i>
+        </span>
+        <i class="icon mdi-action-subject i-20"></i>
+        <span class="font-normal">Items</span>
+      </a>
+      <ul class="nav nav-sub">
+        <li ui-sref-active="active">
+          <a md-ink-ripple ui-sref="app.item.list">Items</a>
+        </li>
+        <li ui-sref-active="active">
+          <a md-ink-ripple ui-sref="app.item.add">Add Item</a>
+        </li>
+        <!--<li ui-sref-active="active">
+          <a md-ink-ripple ui-sref="app.item.delete">Edit Item</a>
+        </li>-->
+      </ul>
+    </li>
+    <li ng-class="{active:$state.includes('app.user')}">
+      <a md-ink-ripple>
+        <span class="pull-right text-muted">
+          <i class="fa fa-caret-down"></i>
+        </span>
+        <i class="icon mdi-action-subject i-20"></i>
+        <span class="font-normal">Users</span>
+      </a>
+      <ul class="nav nav-sub">
+        <li ui-sref-active="active">
+          <a md-ink-ripple ui-sref="app.user.list">Users</a>
+        </li>
+        <li ui-sref-active="active">
+          <a md-ink-ripple ui-sref="app.user.add">Add User</a>
+        </li>
+        <li ui-sref-active="active">
+          <a md-ink-ripple ui-sref="app.user.edit">Edit User</a>
+        </li>
+        <li ui-sref-active="active">
+          <a md-ink-ripple ui-sref="app.user.delete">Delete User</a>
+        </li>
+      </ul>
+    </li>
+    <li ng-class="{active:$state.includes('app.qr')}">
+      <a md-ink-ripple ui-sref="app.qr.generator">      
+        <i class="icon mdi-action-settings-input-svideo i-20"></i>
+        <span class="font-normal">QR Generator</span>
+      </a>
+    </li>
+  </ul>
+</nav>

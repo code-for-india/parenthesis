@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>FeedBack Form - Code For India Hackathon 2016</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+
+<style type="text/css">
+html,
+body {
+    height: 100%;
+}
+html {
+    display: table;
+    margin: auto;
+}
+body {
+    display: table-cell;
+    vertical-align: middle;
+}
+.margin {
+  margin: 0 !important;
+}
+</style>
+  
+</head>
+
+<body class="indigo">
+
+
+  <div id="login-form" class="row">
+    <div class="col s12 z-depth-6 card">
+       <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4"><span id="type"></span><i class="mdi-communication-chat right"></i><span class="right" id="feedbackCount"></span></span>
+          <p id="area"></p>
+          <p id="city"></p>
+       </div>
+       <div class="card-action">
+            <!--<form id="form">   -->     
+                <div class="row margin">                  
+                    <p class="center login-form-text">Please Provide Your Valuable FeedBack</p>
+                    <p id="error"></p>                  
+                </div>
+                <div class="row margin">
+                  <div class="input-field col s12">
+                    <input id="name" type="text" class="validate">
+                    <label for="name" class="center-align">Name</label>
+                  </div>
+                </div>
+                <div class="row margin">
+                  <div class="input-field col s12">
+                    <input id="mobile" type="text" class="validate">
+                    <label for="mobile" class="center-align">Mobile</label>
+                  </div>
+                </div>
+                <div class="row margin">
+                  <div class="input-field col s12">
+                    <select id="rating">
+                      <option value="" disabled selected>Choose your rating</option>
+                      <option value="1">Good</option>			  
+                      <option value="0">Bad</option>	
+                    </select>
+                    <label>Select Your Rating</label>
+                  </div>
+                </div>
+                <div class="row margin">
+                  <div class="input-field col s12">
+                    <textarea id="remarks" class="materialize-textarea" length="200"></textarea>
+                    <label for="remarks">Remarks</label>
+                  </div>
+                </div>
+                <form id="form-file">
+                    <div class="file-field input-field">
+                      <div class="btn indigo">
+                        <span>File</span>
+                        <input type="file" name="userPhoto">
+                      </div>
+                      <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <button class="btn waves-effect pink waves-light col s12" id="form-submit">Submit</button>
+                      </div>
+                    </div>
+                </form>                
+              <!--</form>--> 
+       </div>
+    </div>
+  </div>
+  <div class="row" id="result">
+    <div class="col s12 z-depth-6">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title teal-text" id="msg"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+ <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <!--materialize js-->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+ <script>
+	$(document).ready(function() {
+    $.urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        return results[1] || 0;
+    };
+    $._itemId = $.urlParam('itemId');
+    $._type = ($.urlParam('type')==='loos')?'Public Loos':'Public Monuments';
+    $._area = "";
+    $._city = "";
+    $.ajax({
+            type        : 'GET',
+            url         : 'http://cfi-nivesh2.c9users.io/api/v2/item/searchById/'+$._itemId,
+            dataType    : 'json',
+            encode      : true
+        }).done(function(data) {
+            console.log(data);
+            $('#type').html($._type);
+            var feedbackCount = data.data.feedback.length;
+            $('#feedbackCount').html(feedbackCount);
+            $._area = data.data.area;
+            $('#area').html("<b>Area:</b> "+$._area);
+            $._city = data.data.city;
+            $('#city').html("<b>City:</b> "+$._city);
+        }).fail(function(data) {
+            console.log(data);
+            $('#error').html("<b>Some Error Occured. Please try again</b>");
+        });
+	$('#login-form').show();
+	$('#result').hide();
+    $('select').material_select();
+    $._date = new Date();
+    $('#form-file').submit(function(){
+        var formData = new FormData($(this)[0]);
+        $.ajax({
+            url: 'http://cfi-nivesh2.c9users.io/api/v2/photo',
+            type: 'POST',
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false
+        }).done(function(data) {
+            var formData = {
+                "data":{
+                    "itemId":$._itemId,
+                    "area":$._area,
+                    "city":$._city,
+                    "feedback":{
+                                  "name":$('#name').val(),
+                                  "phonenumber":$('#mobile').val(),
+                                  "rating":$('#rating').val(),
+                                  "remarks":$('#remarks').val(),
+                                  "created":$._date
+                    }
+                }
+            };          
+            $.ajax({
+                type        : 'POST',
+                url         : 'http://cfi-nivesh2.c9users.io/api/v2/feedback/add',
+                data        :  formData,
+                dataType    : 'json',
+                encode      : true
+            }).done(function(data) {
+                $('#msg').html("<b>Thank You for FeedBack!</b>");
+                console.log(data);
+                $('#login-form').hide();
+                $('#result').show();
+            }).fail(function(data) {
+                console.log(data);
+                $('#error').html("<b>Some Error Occured. Please try again</b>");
+                $('#login-form').show();
+                $('#result').hide();
+
+            });
+        }).fail(function(data) {
+            console.log(data);
+            $('#error').html("<b>Some Error Occured. Please try again</b>");
+            $('#login-form').show();
+            $('#result').hide();
+
+        });;
+        return false;
+    });
+  });
+</script>
+</body>
+
+</html>

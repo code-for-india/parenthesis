@@ -1,0 +1,48 @@
+<div class="box bg-white">
+  <div class="navbar md-whiteframe-z1 no-radius" ng-class="$state.current.data.theme ? $state.current.data.theme.primary : app.setting.theme.primary">
+      <!-- brand -->
+      <a class="navbar-brand">
+        <img src="images/logo.png" alt="." style="max-height: 36px; display:none">
+        <span class="hidden-folded m-l inline">{{app.name}}</span>
+      </a>
+      <!-- / brand -->
+  </div>
+  <div class="box-row">
+    <div class="box-cell scrollable hover">
+      <div class="box-inner">
+        <div class="p hidden-folded" ng-class="$state.current.data.theme ? $state.current.data.theme.primary+'-50' : app.setting.theme.primary+'-50'" style="background-image:url(images/bg.png); background-size:cover">
+          <div class="rounded w-64 bg-white inline pos-rlt">
+            <img src="images/a0.jpg" class="img-responsive rounded">
+          </div>
+          <a class="block m-t-sm" ui-toggle-class="hide, show" target="#nav, #account">
+            <span class="block font-bold">Admin</span>
+            <span class="pull-right auto">
+              <i class="fa inline fa-caret-down"></i>
+              <i class="fa none fa-caret-up"></i>
+            </span>
+            admin@feedback.com
+          </a>
+        </div>
+        <div id="nav" ng-include="'views/partials/aside.nav.uikit.html'"></div>
+        <div id="account" class="hide m-v-xs">
+          <nav>
+            <ul class="nav">
+              <li>
+                <a md-ink-ripple ui-sref="page.profile">
+                  <i class="icon mdi-action-perm-contact-cal i-20"></i>
+                  <span>My Profile</span>
+                </a>
+              </li>
+              <li>
+                <a md-ink-ripple ui-sref="page.settings">
+                  <i class="icon mdi-action-settings i-20"></i>
+                  <span>Settings</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

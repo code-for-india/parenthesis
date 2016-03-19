@@ -1,0 +1,32 @@
+<div class="box">
+  <!-- Content Navbar -->
+  <div class="navbar md-whiteframe-z1 no-radius" ng-class="$state.current.data.theme ? $state.current.data.theme.primary : app.setting.theme.primary">
+    <!-- Open side - Naviation on mobile -->
+    <a md-ink-ripple ng-click="openAside()" ng-hide="$state.current.data.child" class="navbar-item pull-left visible-xs visible-sm"><i class="mdi-navigation-menu i-24"></i></a>
+    <!-- / -->
+    <!-- GoBack - Back to parent if $state has the param 'child' -->
+    <a md-ink-ripple class="navbar-item pull-left" ng-click="goBack()" ng-show="$state.current.data.child" ><i class="mdi-navigation-arrow-back i-24"></i></a>
+    <!-- / -->
+    <!-- Page title - Bind to $state's title -->
+    <div class="navbar-item pull-left h4" ng-bind="$state.current.data.title"></div>
+    <!-- / -->
+    <!-- Common tools -->
+    <ul class="nav nav-sm navbar-tool pull-right" ng-hide="$state.current.data.child">
+      <li>
+        <a md-ink-ripple ui-sref="access.signout">
+          <i class="icon mdi-action-exit-to-app i-20"></i>
+        </a>
+      </li>
+    </ul>
+    <div class="pull-right" ui-view="navbar@"></div>
+
+  </div>
+  <!-- Content -->
+  <div class="box-row">
+    <div class="box-cell">
+      <div class="box-inner padding" ui-view id="view">
+      </div>
+    </div>
+  </div>
+  <!-- / -->
+</div>
