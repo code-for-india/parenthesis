@@ -1,8 +1,8 @@
 {
-  "name": "BasicApiServer",
+  "name": "ApiServer",
   "version": "1.0.0",
-  "author": "Nivesh Singh <nivesh2@gmail.com>",
-  "description": "API server with user authentication module",
+  "author": "Neha Tekriwal, Som Prabh Sharma & Nivesh Singh",
+  "description": "Just Hit 'npm start' to start!",
   "private": true,
   "scripts": {
     "start": "nodemon app.js"
@@ -10,8 +10,6 @@
   "dependencies": {
     "body-parser": "^1.14.2",
     "cors": "^2.7.1",
-    "crypto": "0.0.3",
-    "debug": "^2.2.0",
     "express": "^4.13.4",
     "jade": "^1.11.0",
     "jsonwebtoken": "^5.5.4",
@@ -24,6 +22,7 @@
   "license": "MIT",
   "devDependencies": {
     "jshint": "2.9.1",
-    "nodemon": "1.8.1"
+    "nodemon": "1.8.1",
+    "debug": "^2.2.0"
   }
 }
