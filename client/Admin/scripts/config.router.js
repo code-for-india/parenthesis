@@ -66,13 +66,13 @@ angular.module('app')
             .state('app.item.list', {
               url: '/list',
               templateUrl: 'views/pages/items/items.html',
-              data : { title: 'Items' },
+              data : { title: 'Public Loos' },
               controller: 'ItemsCtrl'
             })
             .state('app.item.add', {
               url: '/add',
               templateUrl: 'views/pages/items/add.html',
-              data : { title: 'Add Item' },
+              data : { title: 'Add Loo' },
               controller: 'ItemCtrl'
             })
             .state('app.item.qrgenerator', {
@@ -83,7 +83,7 @@ angular.module('app')
             .state('app.item.edit', {
               url: '/edit',
               templateUrl: 'views/pages/items/edit.html',
-              data : { title: 'Edit Item' }
+              data : { title: 'Edit Loo' }
             })
             .state('app.item.feedbacks', {
               url: '/feedbacks',

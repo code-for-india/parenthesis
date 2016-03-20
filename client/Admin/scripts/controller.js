@@ -40,7 +40,7 @@ app.controller('ItemCtrl', ['$scope', '$rootScope','$http', '$location','$rootSc
 		success(function(data, status, headers, config) {
             console.log(data);
             if(data.success===1){  
-                $scope.qrUrl = "http://feedback.somprabhsharma.com?item="+item.itemId;
+                $scope.qrUrl = "http://feedback.somprabhsharma.com?item="+item.itemId+"&type=loos";
                 $location.path('/app/item/qrgenerate');
             } else if(data.success===0){
                 $scope.error = "some error occured, please try again";

@@ -7,7 +7,7 @@ angular.module('app')
       isIE && angular.element($window.document.body).addClass('ie');
       isSmartDevice( $window ) && angular.element($window.document.body).addClass('smart');
       $scope.app = {
-        name: 'FeedBack System',
+        name: 'Monitoring System',
         version: '1.0.2',
         // for chart colors
         color: {
